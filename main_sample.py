@@ -38,15 +38,23 @@ print("Loaded in Model")
 # Demonstrate incorrectly sample without adding the 'extra noise'
 # ---------------------------------------------------------------
 samples, intermediate = sample_ddpm_incorrect(nn_model, n_samples, height, timesteps, a_t, ab_t, b_t)
-plot_samples(samples.cpu().numpy(), n_disp_rows, title='DDPM - Incorrectly Sample without Adding in Noise',
-             save_path='./outputs', prefix='ddpm_incorrect')
-animate_sampling(intermediate, n_disp_rows, title='DDPM - Incorrectly Sample without Adding in Noise',
-                 save_path='./outputs', prefix='ddpm_incorrect', fps=30)
+plot_samples(samples.cpu().numpy(), n_disp_rows,
+             title=f'DDPM - Incorrectly Sample without Adding in Noise (Steps={timesteps})',
+             save_path='./outputs',
+             prefix='ddpm_incorrect')
+animate_sampling(intermediate, n_disp_rows,
+                 title='DDPM - Incorrectly Sample without Adding in Noise',
+                 save_path='./outputs',
+                 prefix=f'ddpm_incorrect_steps_{timesteps}', fps=30)
 
 # Demonstrate correctly sample with 'extra noise'
 # -----------------------------------------------
 samples, intermediate = sample_ddpm(nn_model, n_samples, height, timesteps, a_t, ab_t, b_t)
-plot_samples(samples.cpu().numpy(), n_disp_rows, title='DDPM - Correct Samples', save_path='./outputs',
-             prefix='ddpm_correct')
-animate_sampling(intermediate, n_disp_rows, title='DDPM - Correct Samples', save_path='./outputs',
-                 prefix='ddpm_correct', fps=30)
+plot_samples(samples.cpu().numpy(), n_disp_rows,
+             title=f'DDPM - Correct Samples (Steps={timesteps})',
+             save_path='./outputs',
+             prefix=f'ddpm_correct_steps_{timesteps}')
+animate_sampling(intermediate, n_disp_rows,
+                 title=f'DDPM - Correct Samples (Steps={timesteps})',
+                 save_path='./outputs',
+                 prefix=f'ddpm_correct_steps_{timesteps}', fps=30)
